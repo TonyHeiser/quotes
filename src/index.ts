@@ -1,5 +1,25 @@
 export default {
-	async fetch() {
+	async fetch(request: Request) {
+
+		const allowedOrigins = [
+			"https://quotes-client.pages.dev",
+			"http://localhost:5173/"
+		];
+		const origin = request.headers.get("Origin") || "";
+		const isPreflight = request.method === "OPTIONS";
+
+		if (isPreflight) {
+			return new Response(null, {
+				status: 204,
+				headers: {
+					"Access-Control-Allow-Origin": allowedOrigins.includes(origin) ? origin : "",
+					"Access-Control-Allow-Methods": "GET, OPTIONS",
+					"Access-Control-Allow-Headers": "Content-Type",
+					"Vary": "Origin"
+				}
+			});
+		}
+
 		let quotesCurrencies = [
 			{
 				name: "freakyAhhOil",
@@ -54,8 +74,8 @@ export default {
 		return new Response(JSON.stringify(quotesCurrencies), {
 			headers: {
 				"Content-Type": "application/json",
-				// "Access-Control-Allow-Origin": "https://quotes-client.pages.dev"
-				"Access-Control-Allow-Origin": "*"
+				"Access-Control-Allow-Origin": allowedOrigins.includes(origin) ? origin : "",
+				"Vary": "Origin"
 			}
 		})
 	}
