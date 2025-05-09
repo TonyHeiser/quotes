@@ -54,7 +54,7 @@ export default {
 		return new Response(JSON.stringify(quotesCurrencies), {
 			headers: {
 				"Content-Type": "application/json",
-				"Access-Control-Allow-Origin": "https://quotes-client.pages.dev/"
+				"Access-Control-Allow-Origin": "https://quotes-client.pages.dev"
 			}
 		})
 	}
