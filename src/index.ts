@@ -3,7 +3,7 @@ export default {
 
 		const allowedOrigins = [
 			"https://quotes-client.pages.dev",
-			"http://localhost:5173/"
+			"http://localhost:5173"
 		];
 		const origin = request.headers.get("Origin") || "";
 		const isPreflight = request.method === "OPTIONS";
