@@ -1,18 +1,61 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.jsonc`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
-	},
-} satisfies ExportedHandler<Env>;
+	async fetch() {
+		let quotesCurrencies = [
+			{
+				name: "freakyAhhOil",
+				current: (Math.random() * 10).toFixed(2),
+			},
+
+			{
+				name: "bugCoin",
+				current: (Math.random() * 1000).toFixed(2),
+			},
+
+			{
+				name: "adamantium",
+				current: (Math.random() * 10000 + 50000).toFixed(2),
+			},
+
+			{
+				name: "asteroidDust",
+				current: (Math.random()).toFixed(2),
+			},
+
+			{
+				name: "nicoNicotine",
+				current: (Math.random() * 10).toFixed(2),
+			},
+
+			{
+				name: "holyWater",
+				current: (Math.random() * 100).toFixed(2),
+			},
+
+			{
+				name: "abMinusBloodType",
+				current: (Math.random() * 1000).toFixed(2),
+			}, 
+
+			{
+				name: "fatGoslingOnlyFansSubscribePlan",
+				current: (Math.random() * 10).toFixed(2),
+			},
+
+			{
+				name: "sAndP10",
+				current: (Math.random() * 10).toFixed(2),
+			},
+
+			{
+				name: "jupitersCore",
+				current: (Math.random() * 10000 + 78000).toFixed(2),
+			},
+		]
+		return new Response(JSON.stringify(quotesCurrencies), {
+			headers: {
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Origin": "http://localhost:5173"
+			}
+		})
+	}
+};
